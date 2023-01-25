@@ -1,6 +1,6 @@
 {
-  "name": "@headwayapp/react-widget",
-  "version": "0.0.5",
+  "name": "@notea/headway-widget",
+  "version": "0.0.5-alpha",
   "description": "Headway widget for React JS",
   "main": "./dist/bundle.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "homepage": "https://headwayapp.co",
   "repository": {
     "type": "git",
-    "url": "https://github.com/headwayappco/widget.git",
+    "url": "https://github.com/notea-org/headway-widget.git",
     "directory": "packages/react-widget"
   },
   "files": [
