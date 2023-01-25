@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import * as PropTypes from "prop-types";
 
 const HeadwayWidgetClassName = "HW_widget_component";
 const HeadwayWidgetSelector = "." + HeadwayWidgetClassName;
@@ -16,6 +16,8 @@ const HeadwayWidgetTrigger = ({ widgetId, component, children }) => {
 HeadwayWidgetTrigger.defaultProps = {
   widgetId: "widget-1",
 };
+
+type FnDestroy = () => void;
 
 const HeadwayWidget = ({
   id,
@@ -99,6 +101,7 @@ const HeadwayWidget = ({
       ...options,
     };
 
+    // @ts-ignore
     const widget = window.Headway.getNewWidget();
     widget.init(hwConfig);
 
@@ -120,13 +123,14 @@ const HeadwayWidget = ({
 
   useEffect(() => {
     let destroy;
+    // @ts-ignore
     if (window.Headway) {
       destroy = initHeadway();
     } else {
       const head = document.getElementsByTagName("head")[0];
       const script = document.createElement("script");
       script.type = "text/javascript";
-      const p = new Promise((resolve) => {
+      const p: Promise<FnDestroy> = new Promise((resolve) => {
         script.onload = () => {
           const d = initHeadway();
           resolve(d);
